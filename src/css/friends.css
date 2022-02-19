@@ -1,0 +1,43 @@
+* {
+  padding: 0;
+  marging: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  font-family: sans-serif;
+}
+
+.friends-app {
+  width: 70vw;
+  margin: 0 auto;
+}
+
+.header,
+.add-friend,
+.friend-list {
+  border: 2px solid #ddd;
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.friend-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.actions {
+  display: flex;
+}
+.actions > div {
+  padding: 0.2rem;
+  margin: 0.3rem;
+  border: 2px solid #ddd;
+}
