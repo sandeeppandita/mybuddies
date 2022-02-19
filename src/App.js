@@ -3,13 +3,13 @@ import {Friends} from './components/Friends';
 
 
 function App() {
-  return (
+  return (  
     <div className="App">
 
-      <Friends name="My Friends"/>
+      <Friends title="My Friends"/>
 
     </div>                                                                                                                            
-  );
+  );  
 }
 
 export default App;

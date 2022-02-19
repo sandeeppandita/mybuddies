@@ -1,12 +1,14 @@
+/* basic  */
 * {
   padding: 0;
-  marging: 0;
+  margin: 0;
   box-sizing: border-box;
 }
 
 body,
 html {
   font-family: sans-serif;
+  color: #444;
 }
 
 .friends-app {
@@ -21,21 +23,40 @@ html {
   padding: 1rem;
 }
 
+/* header */
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+.filters {
+  display: flex;
+  align-items: center;
+}
+
+.filters > div {
+  padding: 0.2rem;
+  margin: 0.2rem;
+}
+
+/* friend list */
 .friend-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  margin: 0.5rem 0;
+  padding: 0.5rem 0;
+}
+.friend-details .msg {
+  font-size: 0.8rem;
 }
 
 .actions {
   display: flex;
 }
+
 .actions > div {
   padding: 0.2rem;
   margin: 0.3rem;
