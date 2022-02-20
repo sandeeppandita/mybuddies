@@ -1,64 +1,89 @@
 /* basic  */
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
 
 body,
 html {
-  font-family: sans-serif;
-  color: #444;
+	font-family: sans-serif;
+	color: #444;
 }
 
 .friends-app {
-  width: 70vw;
-  margin: 0 auto;
+	width: 85vw;
+	margin: 0 auto;
 }
 
 .header,
 .add-friend,
 .friend-list {
-  border: 2px solid #ddd;
-  padding: 1rem;
+	border: 2px solid #ddd;
+	padding: 1rem;
 }
 
 /* header */
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .filters {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .filters > div {
-  padding: 0.2rem;
-  margin: 0.2rem;
+	padding: 0.2rem;
+	margin: 0.2rem;
 }
 
 /* friend list */
 .friend-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 
-  margin: 0.5rem 0;
-  padding: 0.5rem 0;
+	margin: 0.5rem 0;
+	padding: 0.5rem 0;
+
+	position: relative;
 }
 .friend-details .msg {
-  font-size: 0.8rem;
+	font-size: 0.8rem;
 }
 
 .actions {
-  display: flex;
+	display: flex;
 }
 
 .actions > div {
-  padding: 0.2rem;
-  margin: 0.3rem;
-  border: 2px solid #ddd;
+	padding: 0.2rem;
+	margin: 0.3rem;
+	border: 2px solid #ddd;
+}
+
+.delete-confirmation {
+	position: absolute;
+	background-color: #ffe5e5;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 100%;
+	left: 0;
+	width: 100%;
+}
+.unfriend-actions {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.confirm-action,
+.cancel-action {
+	padding: 0.2rem;
+	margin: 0.3rem;
+	border: 2px solid #ddd;
 }

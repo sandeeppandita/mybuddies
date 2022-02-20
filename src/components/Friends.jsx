@@ -1,11 +1,11 @@
-import React from 'react'
-import { useState } from 'react'
+import React from 'react';
+import { useState, useEffect } from 'react';
 
-import { Header } from '../components/Header'
-import { AddFriend } from '../components/AddFriend'
-import { FriendsList } from './FriendsList'
+import { Header } from '../components/Header';
+import { AddFriend } from '../components/AddFriend';
+import { FriendsList } from './FriendsList';
 
-import '../css/friends.css'
+import '../css/friends.css';
 
 const Friends = ({ title }) => {
 	// data
@@ -17,12 +17,12 @@ const Friends = ({ title }) => {
 		},
 		{
 			name: 'Ajay',
-			isFavourite: false,
+			isFavourite: true,
 			isDeleted: false,
 		},
 		{
 			name: 'Nikhil',
-			isFavourite: true,
+			isFavourite: false,
 			isDeleted: false,
 		},
 		{
@@ -30,68 +30,72 @@ const Friends = ({ title }) => {
 			isFavourite: false,
 			isDeleted: false,
 		},
-	]
+	];
 
 	// component states
-	const [friends, setFriends] = useState(friendsList)
-	const [newFriend, setNewFriend] = useState({
-		name: '',
-		isFavourite: false,
-		isDeleted: false,
-	})
-	const [friendExists, setFriendExists] = useState(false)
+	const [friends, setFriends] = useState(friendsList);
+	useEffect(() => {
+		console.log(friends);
+		localStorage.setItem('name', 'sandeep');
+	}, [friends]);
 
-	// control event handlers
-	const handleChange = (e) => {
-		setNewFriend({
-			name: e.target.value,
-		})
-		setFriendExists(false)
-	}
+	const [showFavourites, setShowFavourites] = useState(false);
+	const [searchText, setSearchText] = useState('');
 
-	const handleSubmit = (e) => {
-		e.preventDefault()
+	const handleAddFriend = (newFriend) => {
+		setFriends((existingFriends) => [...existingFriends, newFriend]);
+	};
 
-		// check if friend with same name exists
-		const friendAlreadyExists = friends.some((friend) => {
-			return friend.name.toLowerCase() === newFriend.name.toLowerCase()
-		})
+	// Roshan - what handle name to give if i need to pass handleer to child comp
+	const handleAddToFavourite = (friendName) => {
+		const updatedFriends = friends.map((friend) => {
+			return friend.name === friendName
+				? { ...friend, isFavourite: !friend.isFavourite }
+				: friend;
+		});
 
-		if (friendAlreadyExists) {
-			// if friend exists set flag to true
-			setFriendExists(true)
-		} else {
-			// add the new friend to the list
-			setFriends((existingFriends) => [...existingFriends, newFriend])
+		setFriends(updatedFriends);
+	};
 
-			// clear the add friend field
-			setNewFriend({
-				name: '',
-				isFavourite: false,
-				isDeleted: false,
-			})
-		}
-	}
+	const handleDeleteFriend = (friendName) => {
+		const remainingFriends = friends.filter((friend) => {
+			return friend.name !== friendName;
+		});
+
+		setFriends(remainingFriends);
+	};
+
+	const handleToggleFavourites = (favStatus) => {
+		setShowFavourites(favStatus);
+	};
+
+	const handleFriendSearch = (searchText) => {
+		setSearchText(searchText);
+	};
 
 	// return jsx
 	return (
 		<div className='friends-app'>
 			{/* app header */}
-			<Header title={title} />
-
-			{/* add new friend section */}
-			<AddFriend
-				friends={friends}
-				newFriend={newFriend}
-				friendExists={friendExists}
-				handleSubmit={handleSubmit}
-				handleChange={handleChange}
+			<Header
+				title={title}
+				handleToggleFavourites={handleToggleFavourites}
+				handleFriendSearch={handleFriendSearch}
 			/>
 
-			{/* friends list */}
-			<FriendsList friends={friends} />
-		</div>
-	)
-}
+			{/* add new friend section */}
+			<AddFriend friends={friends} handleAddFriend={handleAddFriend} />
 
-export { Friends }
+			{/* friends list */}
+			<FriendsList
+				friends={friends}
+				showFavourites={showFavourites}
+				searchText={searchText}
+				handleAddToFavourite={handleAddToFavourite}
+				handleDeleteFriend={handleDeleteFriend}
+			/>
+		</div>
+	);
+};
+
+export { Friends };
