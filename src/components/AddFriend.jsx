@@ -1,43 +1,36 @@
 import React, { useState } from 'react';
 
 const AddFriend = ({ friends, handleAddFriend }) => {
-	// friend template
-	const newFriendTemplate = {
-		name: '',
-		isFavourite: false,
-	};
-
-	const [newFriend, setNewFriend] = useState({
-		name: '',
-		isFavourite: false,
-	});
+	const [friendName, setFriendName] = useState('');
 	const [friendExists, setFriendExists] = useState(false);
 
 	const handleChange = (e) => {
-		setNewFriend({
-			...newFriend,
-			name: e.target.value,
-		});
+		setFriendName(e.target.value);
 		setFriendExists(false);
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		// check if friend with same name exists
+		// Check if friend with same name exists
 		const friendAlreadyExists = friends.some((friend) => {
-			return friend.name.toLowerCase() === newFriend.name.toLowerCase();
+			return friend.name.toLowerCase() === friendName.toLowerCase();
 		});
 
 		if (friendAlreadyExists) {
-			// if friend exists set flag to true
+			// If friend exists set flag to true
 			setFriendExists(true);
 		} else {
-			// send the new friend to parent hander
+			// Construct new friend
+			const newFriend = {
+				name: friendName,
+				isFavourite: false,
+			};
+
 			handleAddFriend(newFriend);
 
 			// clear the add friend field
-			setNewFriend(newFriendTemplate);
+			setFriendName('');
 		}
 	};
 
@@ -48,13 +41,13 @@ const AddFriend = ({ friends, handleAddFriend }) => {
 					type='text'
 					name='addfriend'
 					className='input'
-					value={newFriend.name}
+					value={friendName}
 					onChange={handleChange}
 				/>
 			</form>
 			{friendExists && (
 				<div className='friend-exists'>
-					{newFriend.name} is already your friend :)
+					{friendName} is already your friend :)
 				</div>
 			)}
 		</section>

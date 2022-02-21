@@ -87,3 +87,23 @@ html {
 	margin: 0.3rem;
 	border: 2px solid #ddd;
 }
+
+.pagination {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.pagination .page {
+	list-style: none;
+	padding: 0.2rem 0.5rem;
+	margin: 0.3rem;
+	border: 2px solid #ddd;
+}
+.pagination .page.selected {
+	background-color: rgb(84, 180, 236);
+}
+.pagination .page.disabled {
+	background-color: #ddd;
+	pointer-events: none;
+}

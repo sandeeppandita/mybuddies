@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { FriendDetails } from './FriendDetails';
+import { FriendActions } from './FriendActions';
+import { Pagination } from '../components/Pagination';
 
 const FriendsList = ({
 	friends,
@@ -7,78 +10,57 @@ const FriendsList = ({
 	handleAddToFavourite,
 	handleDeleteFriend,
 }) => {
-	const [togglePopup, setTogglePopup] = useState('');
+	const [currentPage, setCurrentPage] = useState(1);
 
-	// handle Delete Confirmation
-	const showDeleteConfrimation = (friendName) => {
-		setTogglePopup(friendName);
+	const pageSize = 4;
+	const currentPageStartIndex = (currentPage - 1) * pageSize;
+	const currentPageEndIndex = currentPageStartIndex + pageSize;
+
+	const handlePageChange = (pageNumber) => {
+		setCurrentPage(pageNumber);
 	};
 
-	let friendsList = showFavourites
-		? friends.filter((friend) => friend.isFavourite)
-		: friends;
+	const filterFriends = () => {
+		// return only fav friends
+		let filteredFriends = showFavourites
+			? friends.filter((friend) => friend.isFavourite)
+			: friends;
 
-	friendsList =
-		searchText.length > 0
-			? friendsList.filter((friend) =>
-					friend.name.toLowerCase().includes(searchText.toLowerCase())
-			  )
-			: friendsList;
+		// return only searched friends
+		filteredFriends =
+			searchText.length > 0
+				? filteredFriends.filter((friend) =>
+						friend.name
+							.toLowerCase()
+							.includes(searchText.toLowerCase())
+				  )
+				: filteredFriends;
 
-	// console.log(showFavourites, friendsList);
+		return filteredFriends;
+	};
+
+	let friendsList = filterFriends();
+
+	// Set total friends count before pagination
+	const totalFilteredFriends = friendsList.length;
+
+	// Set initial pagiation start and end index
+	friendsList = friendsList.slice(currentPageStartIndex, currentPageEndIndex);
 
 	return (
 		<section className='friend-list'>
+			{friends.length} <br />
+			{friendsList.length}
 			{friendsList.length !== 0 ? (
 				friendsList.map((friend) => (
 					<div className='friend-row' key={friend.name}>
-						<div className='friend-details'>
-							<p className='name'>
-								<strong>{friend.name}</strong>
-							</p>
-							<p className='msg'>is your friend</p>
-						</div>
-						<div className='actions'>
-							<div
-								className='favourite-friend'
-								onClick={(e) =>
-									handleAddToFavourite(friend.name)
-								}>
-								{friend.isFavourite
-									? 'Favourite Friend'
-									: 'Normal Friend'}
-							</div>
-							<div
-								className='remove-friend'
-								onClick={(e) =>
-									showDeleteConfrimation(friend.name)
-								}>
-								Del
-							</div>
-							{/* Roshan - why the component render incase of skipping this syntax ()=>{} */}
-						</div>
-						{togglePopup === friend.name && (
-							<div className='delete-confirmation'>
-								<div className='unfriend-msg'>
-									Are you sure you want to unfriend{' '}
-									{friend.name}
-								</div>
-								<div className='unfriend-actions'>
-									<div
-										className='confirm-action'
-										onClick={(e) =>
-											handleDeleteFriend(friend.name)
-										}>
-										Yes
-									</div>
-									<div
-										className='cancel-action'
-										onClick={(e) => setTogglePopup('')}>
-										No
-									</div>
-								</div>
-							</div>
-						)}
+						<FriendDetails friend={friend} />
+
+						<FriendActions
+							friend={friend}
+							handleAddToFavourite={handleAddToFavourite}
+							handleDeleteFriend={handleDeleteFriend}
+						/>
 					</div>
 				))
 			) : searchText !== '' ? (
@@ -91,6 +73,12 @@ const FriendsList = ({
 			) : (
 				''
 			)}
+			<Pagination
+				friendsCount={totalFilteredFriends}
+				currentPage={currentPage}
+				pageSize={pageSize}
+				handlePageChange={handlePageChange}
+			/>
 		</section>
 	);
 };

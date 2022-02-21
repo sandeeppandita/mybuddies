@@ -8,45 +8,30 @@ import { FriendsList } from './FriendsList';
 import '../css/friends.css';
 
 const Friends = ({ title }) => {
-	// data
-	const friendsList = [
-		{
-			name: 'Roshan',
-			isFavourite: true,
-			isDeleted: false,
-		},
-		{
-			name: 'Ajay',
-			isFavourite: true,
-			isDeleted: false,
-		},
-		{
-			name: 'Nikhil',
-			isFavourite: false,
-			isDeleted: false,
-		},
-		{
-			name: 'Tushar',
-			isFavourite: false,
-			isDeleted: false,
-		},
-	];
+	// Fetches from from local storage if they exist other
+	// return empty array
+	const getFriendsFromLocalStorage = () => {
+		const persistedFriends =
+			JSON.parse(localStorage.getItem('friends')) !== null
+				? JSON.parse(localStorage.getItem('friends'))
+				: [];
+		return persistedFriends;
+	};
 
-	// component states
-	const [friends, setFriends] = useState(friendsList);
+	const [friends, setFriends] = useState(getFriendsFromLocalStorage());
 	useEffect(() => {
-		console.log(friends);
-		localStorage.setItem('name', 'sandeep');
+		localStorage.setItem('friends', JSON.stringify(friends));
 	}, [friends]);
 
 	const [showFavourites, setShowFavourites] = useState(false);
 	const [searchText, setSearchText] = useState('');
 
+	// Adds a new friend to the list
 	const handleAddFriend = (newFriend) => {
 		setFriends((existingFriends) => [...existingFriends, newFriend]);
 	};
 
-	// Roshan - what handle name to give if i need to pass handleer to child comp
+	// Marks a friend as favourite friend
 	const handleAddToFavourite = (friendName) => {
 		const updatedFriends = friends.map((friend) => {
 			return friend.name === friendName
@@ -65,15 +50,17 @@ const Friends = ({ title }) => {
 		setFriends(remainingFriends);
 	};
 
+	// Displays only marked as favourite
 	const handleToggleFavourites = (favStatus) => {
 		setShowFavourites(favStatus);
 	};
 
+	// Shows friends based on search term
 	const handleFriendSearch = (searchText) => {
+		console.log(searchText);
 		setSearchText(searchText);
 	};
 
-	// return jsx
 	return (
 		<div className='friends-app'>
 			{/* app header */}
@@ -82,7 +69,7 @@ const Friends = ({ title }) => {
 				handleToggleFavourites={handleToggleFavourites}
 				handleFriendSearch={handleFriendSearch}
 			/>
-
+			{/* {friendsCount} */}
 			{/* add new friend section */}
 			<AddFriend friends={friends} handleAddFriend={handleAddFriend} />
 
