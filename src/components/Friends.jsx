@@ -49,7 +49,9 @@ const Friends = ({ title }) => {
 
 		setFriends(remainingFriends);
 
-		setCurrentPage((currentPage) => currentPage - 1);
+		if (currentPage > 1) {
+			setCurrentPage((currentPage) => currentPage - 1);
+		}
 	};
 
 	// Displays only marked as favourite
