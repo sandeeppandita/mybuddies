@@ -34,7 +34,7 @@ function Pagination({ friendsCount, pageSize, currentPage, handlePageChange }) {
 		<ul className='pagination'>
 			<li
 				key='previous'
-				className={`${currentPage === 1 ? 'disabled' : ''}`}
+				className={`arrow ${currentPage === 1 ? 'disabled' : ''}`}
 				onClick={handlePreviousPageClick}>
 				<BsFillArrowLeftSquareFill />
 			</li>
@@ -52,7 +52,9 @@ function Pagination({ friendsCount, pageSize, currentPage, handlePageChange }) {
 			})}
 			<li
 				key='next'
-				className={`${currentPage === lastPage ? 'disabled' : ''}`}
+				className={`arrow ${
+					currentPage === lastPage ? 'disabled' : ''
+				}`}
 				onClick={handleNextPageClick}>
 				<BsFillArrowRightSquareFill />
 			</li>

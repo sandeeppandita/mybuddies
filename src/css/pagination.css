@@ -20,7 +20,7 @@
 .pagination .page.selected {
 	background-color: rgb(255 255 255);
 }
-.pagination .page.disabled {
+.pagination .arrow.disabled {
 	background-color: #ddd;
 	pointer-events: none;
 }
