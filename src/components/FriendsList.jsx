@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FriendDetails } from './FriendDetails';
 import { FriendActions } from './FriendActions';
 import { Pagination } from '../components/Pagination';
