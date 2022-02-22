@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 
+import { AiFillCloseSquare } from 'react-icons/ai';
+
+import '../css/add-friend.css';
+
 const AddFriend = ({ friends, handleAddFriend }) => {
 	const [friendName, setFriendName] = useState('');
 	const [friendExists, setFriendExists] = useState(false);
@@ -40,14 +44,21 @@ const AddFriend = ({ friends, handleAddFriend }) => {
 				<input
 					type='text'
 					name='addfriend'
-					className='input'
+					className='txt-field'
 					value={friendName}
+					autoComplete='off'
+					placeholder='Type your friends name and press enter'
 					onChange={handleChange}
 				/>
 			</form>
 			{friendExists && (
 				<div className='friend-exists'>
-					{friendName} is already your friend :)
+					<p>{friendName} is already your friend :)</p>
+					<div
+						className='msg-clear'
+						onClick={(e) => setFriendExists(false)}>
+						<AiFillCloseSquare />
+					</div>
 				</div>
 			)}
 		</section>

@@ -1,16 +1,17 @@
 import React from "react";
 import {Friends} from './components/Friends';
 import './css/reset.css';  
-
+import './css/app.css';
   
-function App() {
+  
+function App() {  
   return (  
     <div className="App">
 
-      <Friends title="My Friends"/>
+      <Friends title="My Buddies"/>
 
-    </div>                                                                                                                            
+    </div>                                                                                                                             
   );  
 }
 
-export default App; 
+export default App;   

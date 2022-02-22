@@ -1,109 +1,24 @@
-/* basic  */
-* {
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
-}
-
-body,
-html {
-	font-family: sans-serif;
-	color: #444;
-}
-
 .friends-app {
-	width: 85vw;
-	margin: 0 auto;
+	width: 70vw;
+	border-radius: 8px;
+	background: #ffffffc5;
+	margin-top: 10vh;
+	-webkit-box-shadow: 0px 12px 0px 6px #00000012;
+	-moz-box-shadow: 0px 12px 0px 6px #00000012;
+	box-shadow: 0px 12px 0px 6px #00000012;
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	overflow: hidden;
 }
 
-.header,
-.add-friend,
-.friend-list {
-	border: 2px solid #ddd;
-	padding: 1rem;
+@media screen and (min-width: 768px) {
+	.friends-app {
+		width: 55vw;
+	}
 }
 
-/* header */
-.header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
-.filters {
-	display: flex;
-	align-items: center;
-}
-
-.filters > div {
-	padding: 0.2rem;
-	margin: 0.2rem;
-}
-
-/* friend list */
-.friend-row {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-
-	margin: 0.5rem 0;
-	padding: 0.5rem 0;
-
-	position: relative;
-}
-.friend-details .msg {
-	font-size: 0.8rem;
-}
-
-.actions {
-	display: flex;
-}
-
-.actions > div {
-	padding: 0.2rem;
-	margin: 0.3rem;
-	border: 2px solid #ddd;
-}
-
-.delete-confirmation {
-	position: absolute;
-	background-color: #ffe5e5;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	height: 100%;
-	left: 0;
-	width: 100%;
-}
-.unfriend-actions {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
-.confirm-action,
-.cancel-action {
-	padding: 0.2rem;
-	margin: 0.3rem;
-	border: 2px solid #ddd;
-}
-
-.pagination {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.pagination .page {
-	list-style: none;
-	padding: 0.2rem 0.5rem;
-	margin: 0.3rem;
-	border: 2px solid #ddd;
-}
-.pagination .page.selected {
-	background-color: rgb(84, 180, 236);
-}
-.pagination .page.disabled {
-	background-color: #ddd;
-	pointer-events: none;
+@media screen and (min-width: 992px) {
+	.friends-app {
+		width: 40vw;
+	}
 }

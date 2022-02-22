@@ -3,9 +3,7 @@ import React from 'react';
 const FriendDetails = ({ friend }) => {
 	return (
 		<div className='friend-details'>
-			<p className='name'>
-				<strong>{friend.name}</strong>
-			</p>
+			<h3 className='name'>{friend.name}</h3>
 			<p className='msg'>is your friend</p>
 		</div>
 	);

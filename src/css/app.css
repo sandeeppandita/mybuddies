@@ -1,0 +1,20 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap');
+
+body,
+html {
+	width: 100%;
+	min-height: 100vh;
+	background: url(https://pixabay.com/get/ga7e4b542771e75307da85869e72c412540854547470853b44049552ec6414882130673cedb2fa0e70021dcee47587314c2bcbb9df0b5ed977ad5743737f4b9bfebb51ee3e9961f850a92aff7e7368ab7_1920.jpg)
+		no-repeat center center;
+	background: url(https://pixabay.com/get/g52610bd8df1ae9c59dfbea86d37fef3192b90275fa76ff43f5773d0c295c1981532abd66e5a39a69162b2399ed94a5f5c5373a2f3a65b0808e24d8158c45b98542057893fbf4501c2628034020ccd9db_1920.jpg)
+		no-repeat center center;
+	background: url(https://pixabay.com/get/gb249de3e82180ca3afee9c1e2d567a57405e2bbcd4f7e325271e7fe398e161716cd20dc56ebd70c81f26f36234389f6db29ed3d77dffe9d66154f7106c89385e30bb9211c9307525b1fded7233b25da9_1920.jpg)
+		no-repeat center center;
+	background-size: cover;
+	background-color: #ddd;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	font-family: 'Poppins', sans-serif;
+}

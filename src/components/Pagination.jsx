@@ -1,5 +1,12 @@
 import React from 'react';
 
+import {
+	BsFillArrowLeftSquareFill,
+	BsFillArrowRightSquareFill,
+} from 'react-icons/bs';
+
+import '../css/pagination.css';
+
 function Pagination({ friendsCount, pageSize, currentPage, handlePageChange }) {
 	const getRange = (start, end) => {
 		let length = end - start + 1;
@@ -27,9 +34,9 @@ function Pagination({ friendsCount, pageSize, currentPage, handlePageChange }) {
 		<ul className='pagination'>
 			<li
 				key='previous'
-				className={`page ${currentPage === 1 ? 'disabled' : ''}`}
+				className={`${currentPage === 1 ? 'disabled' : ''}`}
 				onClick={handlePreviousPageClick}>
-				<div className='left-arrow'> ArrowLeft </div>
+				<BsFillArrowLeftSquareFill />
 			</li>
 			{paginationRange.map((pageNumber) => {
 				return (
@@ -45,9 +52,9 @@ function Pagination({ friendsCount, pageSize, currentPage, handlePageChange }) {
 			})}
 			<li
 				key='next'
-				className={`page ${currentPage === lastPage ? 'disabled' : ''}`}
+				className={`${currentPage === lastPage ? 'disabled' : ''}`}
 				onClick={handleNextPageClick}>
-				<div className='left-arrow'> ArrowRight </div>
+				<BsFillArrowRightSquareFill />
 			</li>
 		</ul>
 	);

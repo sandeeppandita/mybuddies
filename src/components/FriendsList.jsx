@@ -3,6 +3,8 @@ import { FriendDetails } from './FriendDetails';
 import { FriendActions } from './FriendActions';
 import { Pagination } from '../components/Pagination';
 
+import '../css/friends-list.css';
+
 const FriendsList = ({
 	friends,
 	searchText,

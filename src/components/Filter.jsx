@@ -17,19 +17,21 @@ const Filter = ({ handleToggleFavourites, handleFriendSearch }) => {
 	return (
 		<div className='filters'>
 			<div className='filter'>
-				Show Favourites:
+				<label className='filter-name'>Show Favourites</label>
 				<input
 					type='checkbox'
-					className='input'
+					className='input-cbox'
 					checked={favStatus}
 					onChange={handleFavouriteChange}
 				/>
 			</div>
 			<div className='search'>
-				Search
+				<label className='filter-name'>Search </label>
+
 				<input
 					type='text'
 					name='name'
+					className='input-search'
 					value={searchText}
 					onChange={handleSearchChange}
 				/>

@@ -1,5 +1,12 @@
 import React, { useState, Fragment } from 'react';
 
+import {
+	RiStarSmileFill,
+	RiStarSmileLine,
+	RiDeleteBin5Line,
+} from 'react-icons/ri';
+import { AiFillCloseSquare, AiFillCheckSquare } from 'react-icons/ai';
+
 const FriendActions = ({
 	friend,
 	handleAddToFavourite,
@@ -18,12 +25,16 @@ const FriendActions = ({
 				<div
 					className='favourite-friend'
 					onClick={(e) => handleAddToFavourite(friend.name)}>
-					{friend.isFavourite ? 'Favourite Friend' : 'Normal Friend'}
+					{friend.isFavourite ? (
+						<RiStarSmileFill />
+					) : (
+						<RiStarSmileLine />
+					)}
 				</div>
 				<div
 					className='remove-friend'
 					onClick={(e) => showDeleteConfrimation(friend.name)}>
-					Del
+					<RiDeleteBin5Line />
 				</div>
 			</div>
 
@@ -34,14 +45,14 @@ const FriendActions = ({
 					</div>
 					<div className='unfriend-actions'>
 						<div
-							className='confirm-action'
-							onClick={(e) => handleDeleteFriend(friend.name)}>
-							Yes
-						</div>
-						<div
 							className='cancel-action'
 							onClick={(e) => setTogglePopup('')}>
-							No
+							<AiFillCloseSquare />
+						</div>
+						<div
+							className='confirm-action'
+							onClick={(e) => handleDeleteFriend(friend.name)}>
+							<AiFillCheckSquare />
 						</div>
 					</div>
 				</div>
