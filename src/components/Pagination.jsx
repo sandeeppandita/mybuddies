@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Pagination({ friendsCount, currentPage, pageSize, handlePageChange }) {
+function Pagination({ friendsCount, pageSize, currentPage, handlePageChange }) {
 	const getRange = (start, end) => {
 		let length = end - start + 1;
 		return Array.from({ length }, (_, idx) => idx + start);
@@ -25,7 +25,6 @@ function Pagination({ friendsCount, currentPage, pageSize, handlePageChange }) {
 
 	return (
 		<ul className='pagination'>
-			{friendsCount}
 			<li
 				key='previous'
 				className={`page ${currentPage === 1 ? 'disabled' : ''}`}

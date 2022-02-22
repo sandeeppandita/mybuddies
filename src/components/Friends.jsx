@@ -8,8 +8,7 @@ import { FriendsList } from './FriendsList';
 import '../css/friends.css';
 
 const Friends = ({ title }) => {
-	// Fetches from from local storage if they exist other
-	// return empty array
+	// Try to load persisted friends from local storage
 	const getFriendsFromLocalStorage = () => {
 		const persistedFriends =
 			JSON.parse(localStorage.getItem('friends')) !== null
@@ -17,7 +16,6 @@ const Friends = ({ title }) => {
 				: [];
 		return persistedFriends;
 	};
-
 	const [friends, setFriends] = useState(getFriendsFromLocalStorage());
 	useEffect(() => {
 		localStorage.setItem('friends', JSON.stringify(friends));
@@ -25,6 +23,7 @@ const Friends = ({ title }) => {
 
 	const [showFavourites, setShowFavourites] = useState(false);
 	const [searchText, setSearchText] = useState('');
+	const [currentPage, setCurrentPage] = useState(1);
 
 	// Adds a new friend to the list
 	const handleAddFriend = (newFriend) => {
@@ -42,6 +41,7 @@ const Friends = ({ title }) => {
 		setFriends(updatedFriends);
 	};
 
+	// Deletes the friend
 	const handleDeleteFriend = (friendName) => {
 		const remainingFriends = friends.filter((friend) => {
 			return friend.name !== friendName;
@@ -53,12 +53,17 @@ const Friends = ({ title }) => {
 	// Displays only marked as favourite
 	const handleToggleFavourites = (favStatus) => {
 		setShowFavourites(favStatus);
+		setCurrentPage(1);
 	};
 
 	// Shows friends based on search term
 	const handleFriendSearch = (searchText) => {
-		console.log(searchText);
 		setSearchText(searchText);
+		setCurrentPage(1);
+	};
+
+	const handlePageChange = (pageNumber) => {
+		setCurrentPage(pageNumber);
 	};
 
 	return (
@@ -78,6 +83,8 @@ const Friends = ({ title }) => {
 				friends={friends}
 				showFavourites={showFavourites}
 				searchText={searchText}
+				currentPage={currentPage}
+				handlePageChange={handlePageChange}
 				handleAddToFavourite={handleAddToFavourite}
 				handleDeleteFriend={handleDeleteFriend}
 			/>

@@ -6,19 +6,15 @@ import { Pagination } from '../components/Pagination';
 const FriendsList = ({
 	friends,
 	searchText,
+	currentPage,
+	handlePageChange,
 	showFavourites,
 	handleAddToFavourite,
 	handleDeleteFriend,
 }) => {
-	const [currentPage, setCurrentPage] = useState(1);
-
 	const pageSize = 4;
 	const currentPageStartIndex = (currentPage - 1) * pageSize;
 	const currentPageEndIndex = currentPageStartIndex + pageSize;
-
-	const handlePageChange = (pageNumber) => {
-		setCurrentPage(pageNumber);
-	};
 
 	const filterFriends = () => {
 		// return only fav friends
@@ -49,8 +45,6 @@ const FriendsList = ({
 
 	return (
 		<section className='friend-list'>
-			{friends.length} <br />
-			{friendsList.length}
 			{friendsList.length !== 0 ? (
 				friendsList.map((friend) => (
 					<div className='friend-row' key={friend.name}>
@@ -75,8 +69,8 @@ const FriendsList = ({
 			)}
 			<Pagination
 				friendsCount={totalFilteredFriends}
-				currentPage={currentPage}
 				pageSize={pageSize}
+				currentPage={currentPage}
 				handlePageChange={handlePageChange}
 			/>
 		</section>
