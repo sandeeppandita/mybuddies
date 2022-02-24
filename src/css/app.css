@@ -5,8 +5,7 @@ body,
 html {
 	width: 100%;
 	min-height: 100vh;
-	background: url(https://pixabay.com/get/gb249de3e82180ca3afee9c1e2d567a57405e2bbcd4f7e325271e7fe398e161716cd20dc56ebd70c81f26f36234389f6db29ed3d77dffe9d66154f7106c89385e30bb9211c9307525b1fded7233b25da9_1920.jpg)
-		no-repeat center center;
+	background: url('../images/app-bg.jpg') no-repeat center center;
 	background-size: cover;
 	background-color: #ddd;
 	display: flex;
